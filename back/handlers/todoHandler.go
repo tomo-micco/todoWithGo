@@ -28,7 +28,13 @@ func GetAllTodo(c *gin.Context) {
 
 	repository := repositories.NewTodoRepository(db)
 	useCase := useCases.NewGetTodoUseCase(repository)
-	todos := useCase.GetAll(c.Request.Context())
+	todos, err := useCase.GetAll(c.Request.Context())
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"errorMessage": err,
+		})
+		return
+	}
 
 	c.JSON(http.StatusOK, todos)
 }
@@ -57,6 +63,12 @@ func FindTodoById(c *gin.Context) {
 	}
 	repository := repositories.NewTodoRepository(db)
 	useCases := useCases.NewGetTodoUseCase(repository)
-	todo := useCases.FindById(c.Request.Context(), id)
+	todo, err := useCases.FindById(c.Request.Context(), id)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"errorMessage": err,
+		})
+		return
+	}
 	c.JSON(http.StatusOK, todo)
 }

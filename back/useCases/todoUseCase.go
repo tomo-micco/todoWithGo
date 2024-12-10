@@ -15,10 +15,10 @@ func NewGetTodoUseCase(repository repositories.TodoRepositoryInterface) *TodoUse
 	return &TodoUseCases{repository}
 }
 
-func (useCase *TodoUseCases) GetAll(c context.Context) []entities.Todo {
+func (useCase *TodoUseCases) GetAll(c context.Context) ([]entities.Todo, error) {
 	return useCase.repository.GetAll(c)
 }
 
-func (useCase *TodoUseCases) FindById(c context.Context, id int64) entities.Todo {
+func (useCase *TodoUseCases) FindById(c context.Context, id int64) (entities.Todo, error) {
 	return useCase.repository.FindById(c, id)
 }
