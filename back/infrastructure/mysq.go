@@ -10,8 +10,8 @@ import (
 )
 
 /*
-* DB接続用
- */
+DB接続用
+*/
 func NewDB() (*sql.DB, error) {
 	err := godotenv.Load()
 	if err != nil {
