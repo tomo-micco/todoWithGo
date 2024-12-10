@@ -78,7 +78,7 @@ func (repository *TodoRepository) Create(c context.Context, todo entities.Todo) 
 	sql := `
 		INSERT INTO
 			todos (
-				todo,
+				content,
 				is_complete
 			) VALUES (
 				?,
@@ -122,7 +122,7 @@ func (repository *TodoRepository) Update(c context.Context, todo entities.Todo) 
 		UPDATE 
 			todos 
 		SET 
-			todo = ?,
+			content = ?,
 			is_complete = ?
 		WHERE 
 			id = ?
